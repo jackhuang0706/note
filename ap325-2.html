@@ -1,0 +1,432 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Chapter 2 - Fijjj 的程式學習筆記</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="highlight-css" href="highlight.css">
+        <link rel="stylesheet" id="tomorrow-night-css" href="tomorrow-night.css">
+        <link rel="stylesheet" id="ayu-highlight-css" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc.js"></script>
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Fijjj 的程式學習筆記</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
+<h1 id="2-排序與二分搜"><a class="header" href="#2-排序與二分搜">2. 排序與二分搜</a></h1>
+<h2 id="p-2-1-不同的數排序"><a class="header" href="#p-2-1-不同的數排序">P-2-1. 不同的數—排序</a></h2>
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+#define fastio ios::sync_with_stdio(0),cin.tie(0),cout.tie(0);
+#define int long long
+using namespace std;
+
+signed main(){
+    fastio;
+    int n,x;
+    cin &gt;&gt; n;
+    set&lt;int&gt; s;
+    while(n--){
+        cin &gt;&gt; x;
+        s.insert(x);
+    }
+    cout &lt;&lt; s.size() &lt;&lt; "\n";
+    for(auto v:s){
+        cout &lt;&lt; v &lt;&lt; " ";
+    }
+}
+</code></pre>
+<h2 id="p-2-2-離散化--sort"><a class="header" href="#p-2-2-離散化--sort">P-2-2. 離散化 – sort</a></h2>
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+#define fastio ios::sync_with_stdio(0),cin.tie(0),cout.tie(0);
+#define int long long
+#define f first
+#define s second
+using namespace std;
+
+signed main(){
+    fastio;
+    int n;
+    cin &gt;&gt; n;
+    vector&lt;int&gt; arr(n);
+    set&lt;int&gt; s;
+    for(int &amp;i:arr) cin &gt;&gt; i,s.insert(i);
+    map&lt;int,int&gt; m;
+    int cnt=0;
+    for(auto &amp;v:s){
+        m[v]=cnt++;
+    }
+    for(int i=0;i&lt;n;i++){
+        cout &lt;&lt; m[arr[i]] &lt;&lt; " ";
+    }
+}
+</code></pre>
+<h2 id="p-2-3-快速冪"><a class="header" href="#p-2-3-快速冪">P-2-3. 快速冪</a></h2>
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+#define fastio ios::sync_with_stdio(0),cin.tie(0),cout.tie(0);
+#define int long long
+using namespace std;
+
+int solve(int x,int y,int p){
+    if(y==1) return x;
+    if(y&amp;1) return (x*solve(x,y-1,p))%p;
+    return (solve(x,y/2,p)*solve(x,y/2,p))%p;
+}
+signed main(){
+    fastio;
+    int x,y,p;
+    cin &gt;&gt; x &gt;&gt; y &gt;&gt; p;
+    x%=p;
+    int ans=solve(x,y,p);
+    cout &lt;&lt; ans &lt;&lt; "\n";
+}
+</code></pre>
+<h2 id="q-2-4-快速冪--200-位整數"><a class="header" href="#q-2-4-快速冪--200-位整數">Q-2-4. 快速冪--200 位整數</a></h2>
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+#define fastio ios::sync_with_stdio(0),cin.tie(0),cout.tie(0);
+#define int long long
+using namespace std;
+
+int solve(int x,int y,int p){
+    if(y==1) return x;
+    if(y&amp;1) return (x*solve(x,y-1,p))%p;
+    return (solve(x,y/2,p)*solve(x,y/2,p))%p;
+}
+signed main(){
+    fastio;
+    string x;
+    int y,p;
+    cin &gt;&gt; x &gt;&gt; y &gt;&gt; p;
+    int len=x.length(),ans=0;
+    for(int i=0;i&lt;len;i++){
+        ans=ans*10+(x[i]-'0');
+        ans%=p;
+    }
+    ans=solve(ans,y,p);
+    cout &lt;&lt; ans &lt;&lt; "\n";
+}
+</code></pre>
+<h2 id="q-2-5-快速計算費式數列第-n-項"><a class="header" href="#q-2-5-快速計算費式數列第-n-項">Q-2-5. 快速計算費式數列第 n 項</a></h2>
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+#define fastio ios::sync_with_stdio(0),cin.tie(0),cout.tie(0);
+#define int long long
+#define mod 1000000007
+using namespace std;
+
+vector&lt;vector&lt;int&gt;&gt; times(vector&lt;vector&lt;int&gt;&gt; a,vector&lt;vector&lt;int&gt;&gt; b){
+    vector&lt;vector&lt;int&gt;&gt; result(2,vector&lt;int&gt; (2));
+    result[0][0]=a[0][0]*b[0][0]+a[0][1]*b[1][0];result[0][0]%=mod;
+    result[0][1]=a[0][0]*b[0][1]+a[0][1]*b[1][1];result[0][1]%=mod;
+    result[1][0]=a[1][0]*b[0][0]+a[1][1]*b[1][0];result[1][0]%=mod;
+    result[1][1]=a[1][0]*b[0][1]+a[1][1]*b[1][1];result[1][1]%=mod;
+    return result;
+}
+vector&lt;vector&lt;int&gt;&gt; cal(vector&lt;vector&lt;int&gt;&gt; arr,int p){
+    vector&lt;vector&lt;int&gt;&gt; result={{1,0},{0,1}};
+    while(p&gt;0){
+        if(p&amp;1){
+            result=times(result,arr);
+        }
+        arr=times(arr,arr);
+        p&gt;&gt;=1;
+    }
+    return result;
+}
+signed main(){
+    fastio;
+    int n;
+    while(cin &gt;&gt; n){
+        if(n==-1){
+            break;
+        }
+        vector&lt;vector&lt;int&gt;&gt; arr={{1,1},{1,0}};
+        vector&lt;vector&lt;int&gt;&gt; ans=cal(arr,n-1);
+        ans[0][0]%=mod;
+        cout &lt;&lt; ans[0][0] &lt;&lt; "\n";
+    }
+}
+</code></pre>
+<h2 id="p-2-6-two-number-problem"><a class="header" href="#p-2-6-two-number-problem">P-2-6. Two-Number problem</a></h2>
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+#define fastio ios::sync_with_stdio(0),cin.tie(0),cout.tie(0);
+#define int long long
+using namespace std;
+
+signed main(){
+    fastio;
+    int m,n,k;
+    cin &gt;&gt; m &gt;&gt; n &gt;&gt; k;
+    vector&lt;int&gt; a(m),b(n);
+    for(int &amp;i:a) cin &gt;&gt; i;
+    for(int &amp;i:b) cin &gt;&gt; i;
+    sort(a.begin(),a.end());
+    sort(b.begin(),b.end(),greater&lt;int&gt;());
+    int idxa=0,idxb=0,ans=0;
+    while(idxa&lt;m &amp;&amp; idxb&lt;n){
+        if(a[idxa]+b[idxb]==k){
+            ans++,idxb++;
+        }
+        else if(a[idxa]+b[idxb]&lt;k){
+            idxa++;
+        }
+        else{
+            idxb++;
+        }
+    }
+    cout &lt;&lt; ans &lt;&lt; "\n";
+}
+</code></pre>
+<h2 id="q-2-7-互補團隊"><a class="header" href="#q-2-7-互補團隊">Q-2-7. 互補團隊</a></h2>
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+#define fastio ios::sync_with_stdio(0),cin.tie(0),cout.tie(0);
+#define int long long
+using namespace std;
+
+signed main(){
+    fastio;
+    int m,n;
+    cin &gt;&gt; m &gt;&gt; n;
+    map&lt;char,int&gt; ch;
+    int cnt=1;
+    for(int i=1;i&lt;=m;i++){
+        ch[i+64]=cnt;
+        cnt&lt;&lt;=1;
+    }
+    string s;
+    vector&lt;int&gt; arr(n,0);
+    for(int i=0;i&lt;n;i++){
+        cin &gt;&gt; s;
+        int len=s.length();
+        set&lt;char&gt; filt;
+        for(int j=0;j&lt;len;j++){
+            filt.insert(s[j]);
+        }
+        for(auto &amp;vis:filt){
+            arr[i]+=ch[vis];
+        }
+    }
+    int result=pow(2,m)-1;
+    sort(arr.begin(),arr.end());
+    int l=0,r=n-1,ans=0;
+    while(l&lt;r){
+        if(arr[l]+arr[r]==result){
+            ans++,l++,r--;
+        }
+        else if(arr[l]+arr[r]&lt;result){
+            l++;
+        }
+        else{
+            r--;
+        }
+    }
+    cout &lt;&lt; ans &lt;&lt; "\n";
+}
+</code></pre>
+<h2 id="q-2-8-模逆元"><a class="header" href="#q-2-8-模逆元">Q-2-8. 模逆元</a></h2>
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+#define fastio ios::sync_with_stdio(0),cin.tie(0),cout.tie(0);
+#define int long long
+using namespace std;
+
+int inv(int a,int n){
+    return a==1?1:inv(n%a,n)*(n-n/a)%n;
+}
+signed main(){
+    fastio;
+    int n,p,x;
+    cin &gt;&gt; n &gt;&gt; p;
+    for(int i=0;i&lt;n;i++){
+        cin &gt;&gt; x;
+        int ans=inv(x,p);
+        cout &lt;&lt; ans &lt;&lt; " ";
+    }
+}
+</code></pre>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="ap325-1.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="ap325-1.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>
